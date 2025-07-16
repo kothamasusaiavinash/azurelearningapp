@@ -17,21 +17,6 @@ public class IndexModel : PageModel
 
     public void OnGet()
     {
-       
-        string connectionString = _configuration.GetConnectionString("AzureSQLDatabase")!;
-        var sqlConnection = new SqlConnection(connectionString);
-        sqlConnection.Open();
-
-        var sqlcommand = new SqlCommand(
-        "SELECT CourseID,CourseName,Rating FROM Course;",sqlConnection);
-         using (SqlDataReader sqlDatareader = sqlcommand.ExecuteReader())
-         {
-             while (sqlDatareader.Read())
-                {
-                    Courses.Add(new Course() {CourseID=Int32.Parse(sqlDatareader["CourseID"].ToString()),
-                    CourseName=sqlDatareader["CourseName"].ToString(),
-                    Rating=Decimal.Parse(sqlDatareader["Rating"].ToString())});
-                }
-         }
+      
     }
 }
